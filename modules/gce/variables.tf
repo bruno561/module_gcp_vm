@@ -44,3 +44,8 @@ variable "nat_ip" {
     type = string
     default = ""
 }
+
+variable "network_tier" {
+    description = "Tipo de camada de rede"
+    type = string
+}
