@@ -42,7 +42,7 @@ variable "image" {
 variable "nat_ip" {
     description = "IP público"
     type = string
-    default = ""
+    default = "manual"
 }
 
 variable "network_tier" {
