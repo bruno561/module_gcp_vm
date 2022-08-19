@@ -38,3 +38,9 @@ variable "image" {
     description = "Imagem do sistema Operacional"
     type = string
 }
+
+variable "nat_ip" {
+    description = "IP público"
+    type = string
+    default = ""
+}
