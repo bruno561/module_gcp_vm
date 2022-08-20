@@ -39,13 +39,13 @@ variable "image" {
     type = string
 }
 
-variable "nat_ip" {
+/*variable "nat_ip" {
     description = "IP público"
     type = string
     default = "manual"
-}
+}*/
 
-variable "network_tier" {
+/*variable "network_tier" {
     description = "Tipo de camada de rede"
     type = string
-}
+}*/
