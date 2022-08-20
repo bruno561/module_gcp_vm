@@ -30,9 +30,9 @@ resource "google_compute_instance" "compute_instance" {
   network_interface {
     network           = "${data.google_compute_network.vpc_shared.self_link}"
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
-    access_config {
+    /*access_config {
       nat_ip = var.nat_ip
       network_tier = var.network_tier
-    }
+    }*/
   }
 }
