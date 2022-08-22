@@ -32,7 +32,7 @@ resource "google_compute_instance" "compute_instance" {
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
     
     dynamic "access_config" {
-       for_each = external_ip == false ? [] : [1]
+       for_each = var.external_ip == false ? [] : [1]
        content {
         //
        }
