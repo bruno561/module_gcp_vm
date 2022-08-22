@@ -38,3 +38,8 @@ variable "image" {
     description = "Imagem do sistema Operacional"
     type = string
 }
+
+variable "external_ip" {
+    description = "External IP"
+    type = bool
+}

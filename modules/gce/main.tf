@@ -30,7 +30,12 @@ resource "google_compute_instance" "compute_instance" {
   network_interface {
     network           = "${data.google_compute_network.vpc_shared.self_link}"
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
-    /*access_config {
-    }*/
+    
+    dynamic "access_config" {
+       for_each = external_ip == false ? [] : [1]
+       content {
+        //
+       }
+    }
   }
 }
