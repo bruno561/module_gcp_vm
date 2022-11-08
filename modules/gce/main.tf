@@ -34,14 +34,8 @@ resource "google_compute_instance" "default" {
   network_interface {
     network           = "${data.google_compute_network.vpc_shared.self_link}"
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
-    
-    dynamic "access_config" {
-      for_each = var.external_ip == false ? [] : [1]
-      content {
-        //
-      }
+
     }
-  }
     lifecycle {
       ignore_changes = [attached_disk]
       }
