@@ -40,12 +40,12 @@ resource "google_compute_instance" "default" {
       content {
         //
       }
+    }
     lifecycle {
       ignore_changes = [attached_disk]
       }
     }
   }
-}
 resource "google_compute_attached_disk" "default" {
   disk     = google_compute_disk.default.id
   instance = google_compute_instance.default.id
