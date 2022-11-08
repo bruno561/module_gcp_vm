@@ -19,6 +19,10 @@ resource "google_compute_disk" "default" {
   project = var.project
   name = "compute-disk"
   zone = var.zone
+    
+  depends_on = [
+    google_compute_instance.default
+  ]
 }
 
 resource "google_compute_instance" "default" {
@@ -38,10 +42,14 @@ resource "google_compute_instance" "default" {
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
 
     }
-    lifecycle {
-      ignore_changes = [attached_disk]
-      }
+  dynamic "attached_disk" {
+      for_each = var.external_ip == false ? [] : [1]
+      content {
+        source = self_link
+        mode = READ_WRITE
+       }
     }
+}
 resource "google_compute_attached_disk" "default" {
   disk     = google_compute_disk.default.id
   instance = google_compute_instance.default.id
