@@ -16,6 +16,7 @@ data "google_compute_subnetwork" "vpc_subnetwork" {
 }
 
 resource "google_compute_disk" "default" {
+  project = var.project
   name = "compute-disk"
 }
 
