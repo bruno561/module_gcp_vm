@@ -19,7 +19,7 @@
       name = "compute-disk"
     }
 
-    resource "google_compute_instance" "compute_instance" {
+    resource "google_compute_instance" "default" {
       project             = var.project
       name                = var.compute_name
       machine_type        = var.machine_type
