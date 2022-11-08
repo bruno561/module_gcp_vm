@@ -18,7 +18,7 @@ data "google_compute_subnetwork" "vpc_subnetwork" {
 resource "google_compute_disk" "default" {
   project = var.project
   name = "compute-disk"
-  zone = self_link
+  zone = var.zone
 }
 
 resource "google_compute_instance" "default" {
