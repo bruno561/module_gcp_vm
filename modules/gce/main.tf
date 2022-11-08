@@ -15,6 +15,11 @@ data "google_compute_subnetwork" "vpc_subnetwork" {
     region            = var.region
 }
 
+resource "google_compute_attached_disk" "default" {
+  disk     = google_compute_disk.default.id
+  instance = google_compute_instance.default.id
+}
+
 resource "google_compute_instance" "compute_instance" {
   project             = var.project
   name                = var.compute_name
@@ -36,6 +41,11 @@ resource "google_compute_instance" "compute_instance" {
        content {
         //
        }
+
+  lifecycle {
+    ignore_changes = [attached_disk]
+  }
+}   
     }
   }
 }
