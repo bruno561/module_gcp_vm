@@ -37,18 +37,10 @@ resource "google_compute_instance" "default" {
   network_interface {
     network           = "${data.google_compute_network.vpc_shared.self_link}"
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
-
     }
-  dynamic "attached_disk" {
-        for_each = var.external_ip == false ? [] : [1]
-        content {
-        source = google_compute_disk.default[0].id
+  attached_disk {
+        source = google_compute_disk.default[count.index].id
         }
-       }
-  
-  depends_on = [
-    google_compute_disk.default
-  ]
 }
 # resource "google_compute_attached_disk" "default" {
 #   disk     = google_compute_disk.default.id
