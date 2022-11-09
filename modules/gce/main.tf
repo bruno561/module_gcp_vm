@@ -39,7 +39,7 @@ resource "google_compute_instance" "default" {
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
     }
   attached_disk {
-        source = google_compute_disk.default[count.index].id
+        source = google_compute_disk.default[0].id
         }
 }
 # resource "google_compute_attached_disk" "default" {
