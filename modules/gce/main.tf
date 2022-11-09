@@ -15,7 +15,8 @@ data "google_compute_subnetwork" "vpc_subnetwork" {
     region            = var.region
 }
 
-resource "google_compute_disk" "default" {
+resource "google_secondary_disk" "default" {
+  count = var.secondary_disk == true ? 1 : 0
   project = var.project
   name = "compute-disk"
   zone = var.zone
@@ -41,19 +42,19 @@ resource "google_compute_instance" "default" {
   dynamic "attached_disk" {
         for_each = var.external_ip == false ? [] : [1]
         content {
-        source = google_compute_disk.default.id
+        source = google_secondary_disk.default.id
         }
        }
   
   depends_on = [
-    google_compute_disk.default
+    google_secondary_disk.default
   ]
 }
 # resource "google_compute_attached_disk" "default" {
-#   disk     = google_compute_disk.default.id
+#   disk     = google_secondary_disk.default.id
 #   instance = google_compute_instance.default.id
    
 #   depends_on = [
-#     google_compute_disk.default
+#     google_secondary_disk.default
 #   ]
 #}

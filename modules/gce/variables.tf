@@ -43,3 +43,8 @@ variable "external_ip" {
     description = "External IP"
     type = bool
 }
+
+variable "sencondary_disk" {
+    description = ""
+    type = number
+}
