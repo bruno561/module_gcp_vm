@@ -38,8 +38,11 @@ resource "google_compute_instance" "default" {
     subnetwork        = "${data.google_compute_subnetwork.vpc_subnetwork.self_link}"
 
     }
-  attached_disk {
+  dynamic "attached_disk" {
+        for_each = var.external_ip == false ? [] : [1]
+        content {
         source = google_compute_disk.default.id
+        }
        }
   
   depends_on = [
