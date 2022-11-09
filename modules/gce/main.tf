@@ -38,11 +38,9 @@ resource "google_compute_instance" "default" {
     network    = data.google_compute_network.vpc_shared.self_link
     subnetwork = data.google_compute_subnetwork.vpc_subnetwork.self_link
   }
-
   attached_disk {
     source = google_compute_disk.default[count.index].id
   }
-
   depends_on = [
     google_compute_disk.default
   ]

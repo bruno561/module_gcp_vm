@@ -45,6 +45,6 @@ variable "external_ip" {
 }
 
 variable "secondary_disk" {
-  description = ""
+  description = "test"
   type        = bool
 }
