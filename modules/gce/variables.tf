@@ -45,6 +45,21 @@ variable "external_ip" {
 }
 
 variable "secondary_disk" {
-  description = "test"
+  description = ""
   type        = bool
+}
+
+variable "secondary_disk_name" {
+  description = ""
+  type        = string
+}
+
+variable "secondary_disk_size" {
+  description = ""
+  type        = string
+}
+
+variable "secondary_disk_type" {
+  description = ""
+  type        = number
 }
