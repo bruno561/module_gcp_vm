@@ -46,11 +46,11 @@ resource "google_compute_instance" "default" {
     google_compute_disk.default
   ]
 }
-resource "google_compute_attached_disk" "default" {
-  disk     = google_compute_disk.default.id
-  instance = google_compute_instance.default.id
+# resource "google_compute_attached_disk" "default" {
+#   disk     = google_compute_disk.default.id
+#   instance = google_compute_instance.default.id
    
-  depends_on = [
-    google_compute_disk.default
-  ]
-}
+#   depends_on = [
+#     google_compute_disk.default
+#   ]
+#}
