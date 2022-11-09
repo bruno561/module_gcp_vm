@@ -51,7 +51,7 @@ resource "google_compute_instance" "default" {
   ]
 }
 resource "google_compute_attached_disk" "default" {
-  count   = var.secondary_disk == true ? 1 : 0
+  count    = var.secondary_disk == true ? 1 : 0
   disk     = google_compute_disk.default[0].id
   instance = google_compute_instance.default.id
 
