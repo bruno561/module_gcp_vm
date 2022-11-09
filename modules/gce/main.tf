@@ -48,6 +48,9 @@ resource "google_compute_instance" "default" {
       }
     }
   }
+  lifecycle {
+    ignore_changes = [attached_disk]
+  }
   depends_on = [
     google_compute_disk.default
   ]
@@ -62,3 +65,4 @@ resource "google_compute_attached_disk" "default" {
     google_compute_disk.default
   ]
 }
+
