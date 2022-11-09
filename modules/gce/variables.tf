@@ -52,14 +52,17 @@ variable "secondary_disk" {
 variable "secondary_disk_name" {
   description = ""
   type        = string
+  default     = "secondary-disk"
 }
 
 variable "secondary_disk_size" {
   description = ""
-  type        = string
+  type        = number
+  default     = "10"
 }
 
 variable "secondary_disk_type" {
   description = ""
-  type        = number
+  type        = string
+  default     = "pd-balanced"
 }
