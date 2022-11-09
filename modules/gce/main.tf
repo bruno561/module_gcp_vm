@@ -43,7 +43,7 @@ resource "google_compute_instance" "default" {
   ]
 }
  resource "google_compute_attached_disk" "default" {
-  disk     = google_compute_disk.default[count.index].id
+  disk     = google_compute_disk.default.*.id
   instance = google_compute_instance.default.id
 
    depends_on = [
