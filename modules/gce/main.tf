@@ -16,12 +16,14 @@ data "google_compute_subnetwork" "vpc_subnetwork" {
 }
 
 resource "google_compute_disk" "default" {
+  count   = var.secondary_disk == true ? 1 : 0
   project = var.project
   name    = var.secondary_disk_name
   zone    = var.zone
   size    = var.secondary_disk_size
   type    = var.secondary_disk_type
 }
+
 
 resource "google_compute_instance" "default" {
   project      = var.project
@@ -46,19 +48,20 @@ resource "google_compute_instance" "default" {
       }
     }
   }
-  attached_disk {
-    source = google_compute_disk.default.id
-  }
   lifecycle {
     ignore_changes = [attached_disk]
   }
+  depends_on = [
+    google_compute_disk.default
+  ]
 }
 
-# resource "google_compute_attached_disk" "default"
-#   disk     = google_compute_disk.default[0].id
-#   instance = google_compute_instance.default.id
+resource "google_compute_attached_disk" "default" {
+  count    = var.secondary_disk == true ? 1 : 0
+  disk     = google_compute_disk.default[0].id
+  instance = google_compute_instance.default.id
 
-#   depends_on = [
-#     google_compute_disk.default
-#   ]
-# }
+  depends_on = [
+    google_compute_disk.default
+  ]
+}

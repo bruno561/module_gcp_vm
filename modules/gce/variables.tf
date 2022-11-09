@@ -44,17 +44,25 @@ variable "external_ip" {
   type        = bool
 }
 
+variable "secondary_disk" {
+  description = ""
+  type        = bool
+}
+
 variable "secondary_disk_name" {
   description = ""
   type        = string
+  default     = "secondary-disk"
 }
 
 variable "secondary_disk_size" {
   description = ""
   type        = number
+  default     = "10"
 }
 
 variable "secondary_disk_type" {
   description = ""
   type        = string
+  default     = "pd-balanced"
 }
