@@ -49,6 +49,9 @@ resource "google_compute_instance" "default" {
   attached_disk {
     source = google_compute_disk.default.id
   }
+  lifecycle {
+    ignore_changes = [attached_disk]
+  }
 }
 # resource "google_compute_attached_disk" "default"
 #   disk     = google_compute_disk.default[0].id
