@@ -42,15 +42,14 @@ resource "google_compute_instance" "default" {
     dynamic "access_config" {
       for_each = var.external_ip == false ? [] : [1]
       content {
-      //
+        //
       }
     }
-      attached_disk {
-        source = google_compute_disk.default.id
-       }
+  }
+  attached_disk {
+    source = google_compute_disk.default.id
   }
 }
-
 # resource "google_compute_attached_disk" "default"
 #   disk     = google_compute_disk.default[0].id
 #   instance = google_compute_instance.default.id
