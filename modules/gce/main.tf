@@ -42,7 +42,7 @@ resource "google_compute_instance" "default" {
   dynamic "attached_disk" {
         for_each = var.external_ip == false ? [] : [1]
         content {
-        source = google_compute_disk.default[count.index].id
+        source = google_compute_disk.default[0].id
         }
        }
   
