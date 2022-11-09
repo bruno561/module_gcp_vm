@@ -46,5 +46,5 @@ variable "external_ip" {
 
 variable "secondary_disk" {
     description = ""
-    type = number
+    type = string
 }
