@@ -17,6 +17,7 @@ data "google_compute_subnetwork" "vpc_subnetwork" {
 
 resource "google_compute_address" "static" {
   count   = var.external_static_ip == true ? 1 : 0
+  project = var.project
   name = "ipv4-address"
 }
 
