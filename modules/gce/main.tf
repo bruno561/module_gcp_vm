@@ -15,6 +15,12 @@ data "google_compute_subnetwork" "vpc_subnetwork" {
   region  = var.region
 }
 
+resource "google_compute_address" "static" {
+  count   = var.external_static_ip == true ? 1 : 0
+  name = "ipv4-address"
+}
+
+
 resource "google_compute_disk" "default" {
   count   = var.secondary_disk == true ? 1 : 0
   project = var.project
@@ -44,7 +50,7 @@ resource "google_compute_instance" "default" {
     dynamic "access_config" {
       for_each = var.external_ip == false ? [] : [1]
       content {
-        //
+        nat_ip = google_compute_address.static[0].address
       }
     }
   }

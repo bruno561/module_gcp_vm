@@ -44,6 +44,11 @@ variable "external_ip" {
   type        = bool
 }
 
+variable "external_static_ip" {
+  description = "External Static IP"
+  type        = bool
+}
+
 variable "secondary_disk" {
   description = ""
   type        = bool
