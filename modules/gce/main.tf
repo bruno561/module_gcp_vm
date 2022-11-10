@@ -19,9 +19,8 @@ resource "google_compute_address" "static" {
   count   = var.external_static_ip == true ? 1 : 0
   project = var.project
   region = var.region
-  name = "ipv4-address"
+  name = "${var.compute_name}-ipv4-address"
 }
-
 
 resource "google_compute_disk" "default" {
   count   = var.secondary_disk == true ? 1 : 0
@@ -31,7 +30,6 @@ resource "google_compute_disk" "default" {
   size    = var.secondary_disk_size
   type    = var.secondary_disk_type
 }
-
 
 resource "google_compute_instance" "default" {
   project      = var.project
