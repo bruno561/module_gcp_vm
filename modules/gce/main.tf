@@ -58,7 +58,7 @@ resource "google_compute_instance" "default" {
     ignore_changes = [attached_disk]
   }
   depends_on = [
-    "google_compute_disk.default", "google_compute_address.static"
+    google_compute_address.static
   ]
 }
 
